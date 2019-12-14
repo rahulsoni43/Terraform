@@ -13,9 +13,9 @@ pipeline {
                 echo 'Hello World..'
             }
         }
-        stage('Deploy') {
+        stage('Docker') {
             steps {
-                echo 'Deploying....'
+                sh 'docker run hello-world'
             }
         }
     }
