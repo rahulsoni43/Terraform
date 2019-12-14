@@ -6,4 +6,6 @@ variable "project_name" {
   default = "la-terraform"
 }
 
-
+variable "number_of_instances" {
+  default = "2"
+}
