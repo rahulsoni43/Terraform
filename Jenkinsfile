@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'sudo apt-get udapte -y'
+                apt-get upgrade -y
             }
         }
         stage('Test') {
