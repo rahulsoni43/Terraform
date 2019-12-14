@@ -15,5 +15,6 @@ output "container_name" {
   value = "${docker_container.container_id.name}"
 }
 
-
-
+output "int_port" {
+  value = "${docker_container.container_id.ports[0]}"
+}
