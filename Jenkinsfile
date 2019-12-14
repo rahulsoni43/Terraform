@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                apt-get upgrade -y
+                'apt-get upgrade -y'
             }
         }
         stage('Test') {
