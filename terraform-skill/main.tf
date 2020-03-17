@@ -16,6 +16,9 @@ data "template_file" "appinit" {
   count    = 2
   template = file("${path.module}/userdata.tpl")
 
+  vars = {
+     firewall_subnets = element(aws_subnet.dmz_subnet.*.cidr_block, count.index)
+   }
 }
 
 resource "aws_instance" "server" {
