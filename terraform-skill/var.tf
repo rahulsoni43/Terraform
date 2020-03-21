@@ -10,7 +10,7 @@ variable public_cidrs {
   default = ["192.168.4.0/23", "192.168.6.0/23"]
 }
 
-variable dmz_cidrs {  
+variable dmz_cidrs {
   default = ["192.168.0.0/23", "192.168.2.0/23"]
 }
 

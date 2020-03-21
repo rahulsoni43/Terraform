@@ -17,8 +17,8 @@ data "template_file" "appinit" {
   template = file("${path.module}/userdata.tpl")
 
   vars = {
-     firewall_subnets = element(aws_subnet.dmz_subnet.*.cidr_block, count.index)
-   }
+    firewall_subnets = element(aws_subnet.dmz_subnet.*.cidr_block, count.index)
+  }
 }
 
 resource "aws_instance" "server" {
@@ -31,7 +31,7 @@ resource "aws_instance" "server" {
   user_data              = data.template_file.appinit.*.rendered[count.index]
 
   tags = {
-    Name = "server_${count.index + 1}"
+    Name = "AppServer_${count.index + 1}"
   }
 }
 
