@@ -1,0 +1,37 @@
+- hosts: all
+  become: yes
+  remote_user: ubuntu
+  pre_tasks:
+  - name: 'Install Python'
+    raw: sudo apt-get -y install python
+  tasks:
+    - name: Install Apache.
+      apt:
+        name:
+        - python3
+        - apache2
+        - php
+        - php-mysql
+        state: present
+
+    - name: Download WordPress
+      get_url: url=http://wordpress.org/wordpress-5.0.2.tar.gz dest=/var/www/html/wordpress.tar.gz force=yes
+
+    - name: Extract WordPress
+      command: "tar xzf /var/www/html/wordpress.tar.gz -C /var/www/html --strip-components 1"
+      args:
+        warn: no
+
+    - name: Make my directory tree readable
+      file:
+        path: /var/www/html
+        mode: '0755'
+        recurse: yes
+        owner: ubuntu
+        group: ubuntu
+
+    - name: Make sure Apache is started now and at boot.
+      service:
+       name: apache2
+       state:  restarted
+       enabled: yes
