@@ -1,7 +1,12 @@
 {
+ "variables": {
+   "aws_access_key": "",
+   "aws_secret_key": ""
+ },
 "builders": [{
   "type": "amazon-ebs",
-  "profile": "soniboy",
+  "access_key": "{{user `aws_access_key`}}"
+  "secret_key": "{{user `aws_secret_key`}}"
   "region": "ap-south-1",
   "source_ami_filter": {
     "filters": {
