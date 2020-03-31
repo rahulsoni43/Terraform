@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-ARTIFACT=`packer build -machine-readable terraform-jenkins/packer.json | awk -F, '$0 ~/artifact,0,id/ {print $6}'`
+ARTIFACT=`packer build -machine-readable Terraform/terraform-jenkins/packer.json | awk -F, '$0 ~/artifact,0,id/ {print $6}'`
 AMI_ID= `echo $ARTIFACT | awk -F ':' '{print $2}'`
 echo 'variable AMI_ID = "'${ARTIFACT}'"' > amivar.tf
 S3_BUCKET=`aws s3 ls | grep rahul | cut -d ' ' -f3`
