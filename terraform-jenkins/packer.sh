@@ -1,6 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
 set -x
-cd terraform-jenkins
 ARTIFACT=`packer build -machine-readable packer.json | awk -F, '$0 ~/artifact,0,id/ {print $6}'`
 AMI_ID= `echo $ARTIFACT | awk -F ':' '{print $2}'`
 echo 'variable AMI_ID = "'${ARTIFACT}'"' > amivar.tf
