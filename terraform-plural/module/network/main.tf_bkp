@@ -1,0 +1,46 @@
+/*data "aws_availability_zones" "available" {}
+
+provider "aws" {
+  region = "ap-south-1"
+  profile = "soniboy"
+  version = "2.53"
+}
+
+resource "aws_vpc" "vpc-plural" {
+  cidr_block = var.cidr_block
+}
+
+
+resource "aws_subnet" "public_subnet" {
+  count = var.subnet_count
+  vpc_id = aws_vpc.vpc-plural.id
+  cidr_block = var.public_subnet[count.index]
+  availability_zone = data.aws_availability_zones.available.names[count.index]
+
+  tags = {
+    Name = "Public_Subet_${count.index + 1}"
+  }
+}
+
+resource "aws_subnet" "private_subnet" {
+  count = var.subnet_count
+  vpc_id = aws_vpc.vpc-plural.id
+  cidr_block = var.private_subnet[count.index]
+  availability_zone = data.aws_availability_zones.available.names[count.index]
+
+  tags = {
+    Name = "Private_Subnet_${count.index + 1}"
+    }
+}
+
+
+resource "aws_eip" "eip" {
+  count = 2
+}
+
+resource "aws_nat_gateway" "natgw" {
+  count = 2
+  allocation_id = aws_eip.eip.*.id[count.index]
+  subnet_id     = aws_subnet.public_subnet.*.id[count.index]
+}
+*/

@@ -1,0 +1,61 @@
+k8svault-soniboy
+
+
+ubuntu@soniboy:~$ az keyvault key create --vault-name "k8svault-soniboy" --name "k8skey"
+{
+  "attributes": {
+    "created": "2020-04-12T17:36:52+00:00",
+    "enabled": true,
+    "expires": null,
+    "notBefore": null,
+    "recoveryLevel": "Recoverable+Purgeable",
+    "updated": "2020-04-12T17:36:52+00:00"
+  },
+  "key": {
+    "crv": null,
+    "d": null,
+    "dp": null,
+    "dq": null,
+    "e": "AQAB",
+    "k": null,
+    "keyOps": [
+      "encrypt",
+      "decrypt",
+      "sign",
+      "verify",
+      "wrapKey",
+      "unwrapKey"
+    ],
+    "kid": "https://k8svault-soniboy.vault.azure.net/keys/k8skey/640c42c51d034145920385a2d4fc5284",
+    "kty": "RSA",
+    "n": "rQBU8KMgmUGJR+VxnrTyMZhXB24Ig6d3nNP+Jzd2Hnplyfa8MlQ5Q431HbLSsRfWZSMfKuZVpA+0cevCnB7uz2/yXC1z6oFydMz0DoB8bWlZog9y3A8qjh5ycsCeNWxyO4+wEiswSMyQf1H1DnistClWG8cF4aNAESkfOEc4DUku3R426/djOTq5Nkutg3QRE86n3F2LKisasDB09RaKZyC0/aNX9rN8If9NsXeOhc5CpKIv9QnXX5u34IuMGeehaALFNrtx6JryThBV0lOLLWS+4xwq2tlhd2yaBYEBEoKC8PwatZMPsIgIkI2AdCC78OEcfI7gTXo0IBWCbzH9SQ==",
+    "p": null,
+    "q": null,
+    "qi": null,
+    "t": null,
+    "x": null,
+    "y": null
+  },
+  "managed": null,
+  "tags": null
+}
+
+
+{
+  "appId": "32d1b213-23ae-4ae6-8710-5ebaa7e2d777",
+  "displayName": "k8sprincipal",
+  "fileWithCertAndPrivateKey": "/home/ubuntu/tmp0avgdrsj.pem",
+  "name": "http://k8sprincipal",
+  "password": null,
+  "tenant": "e698e2b5-d758-49a3-896d-57cb6cc0f5d2"
+}
+e698e2b5-d758-49a3-896d-57cb6cc0f5d2
+
+
+{
+  "appId": "32d1b213-23ae-4ae6-8710-5ebaa7e2d777",
+  "displayName": "k8sprincipal",
+  "name": "http://k8sprincipal",
+  "password": "38b7bc91-b616-4554-9108-ca601dbce1ac",
+  "tenant": "e698e2b5-d758-49a3-896d-57cb6cc0f5d2"
+}

@@ -23,6 +23,7 @@ resource "aws_autoscaling_group" "autoscale" {
   termination_policies      = ["OldestInstance"]
   target_group_arns         = [aws_alb_target_group.target-group.arn]
 
+
   tag {
     key                 = "Name"
     value               = "AutoScaling"
