@@ -28,13 +28,13 @@
   
   - Second Version of Application
    
-    ```
-    FROM alpine:3.14
-    COPY /bin/ /app
-    WORKDIR /app
-    EXPOSE 8080
-    ENTRYPOINT ["./eVision-product-ops.linux.1.0.1"]
-    ```
+   ```
+   FROM alpine:3.14
+   COPY /bin/ /app
+   WORKDIR /app
+   EXPOSE 8080
+   ENTRYPOINT ["./eVision-product-ops.linux.1.0.1"]
+   ```
 
    - Tagging this image with **`v1`** and **`v2`** versions.
 
@@ -69,57 +69,57 @@
 
    ![v1](images/v1.PNG)
 
-    ```
-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: wk
-      name: wk
-    spec:
-      replicas: 3
-      selector:
-        matchLabels:
+      ```
+  
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        creationTimestamp: null
+        labels:
           app: wk
-      strategy: {}
-      template:
-        metadata:
-          creationTimestamp: null
-          labels:
+        name: wk
+      spec:
+        replicas: 3
+        selector:
+          matchLabels:
             app: wk
-        spec:
-          containers:
-          - image: enablon.azurecr.io/v1:v1
-            imagePullPolicy: Always
-            name: v1
-            resources: {}
-    status: {}     
-    ```
+        strategy: {}
+        template:
+          metadata:
+            creationTimestamp: null
+            labels:
+              app: wk
+          spec:
+            containers:
+            - image: enablon.azurecr.io/v1:v1
+              imagePullPolicy: Always
+              name: v1
+              resources: {}
+      status: {}     
+      ```
+  
+      ```
+  
+      apiVersion: v1
+      kind: Service
+      metadata:
+        creationTimestamp: null
+        labels:
+          app: wk
+        name: wk
+      spec:
+        ports:
+        - port: 8080
+          protocol: TCP
+          targetPort: 8080
+        selector:
+          app: wk
+        type: LoadBalancer
+      status:
+        loadBalancer: {}
+      ```
 
-    ```
-
-    apiVersion: v1
-    kind: Service
-    metadata:
-      creationTimestamp: null
-      labels:
-        app: wk
-      name: wk
-    spec:
-      ports:
-      - port: 8080
-        protocol: TCP
-        targetPort: 8080
-      selector:
-        app: wk
-      type: LoadBalancer
-    status:
-      loadBalancer: {}
-    ```
-
-     ![svc](images/svc.PNG)
+    ![svc](images/svc.PNG)
 
 
    - Once the deployment of first version is done successfully use below command to release the new feature/version of the image.
