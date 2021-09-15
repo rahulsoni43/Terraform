@@ -1,0 +1,13 @@
+variable location {}
+variable name {}
+variable address_space_vnet {}
+variable address_space_pnet {}
+variable vm_name {}
+variable vm_size {}
+variable publisher {}
+variable os {}
+variable os_version {}
+variable type {}
+variable zones {}
+variable node_count {}
+variable ssh_public_key {}

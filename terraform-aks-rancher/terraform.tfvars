@@ -1,0 +1,13 @@
+location           = "eastus2"
+name               = "myrg"
+address_space_vnet = ["10.0.0.0/16"]
+address_space_pnet = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+vm_name            = "azure_vm"
+vm_size            = "Standard_D2s_v3"
+publisher          = "Canonical"
+os                 = "UbuntuServer"
+os_version         = "18.04-LTS"
+type               = "latest"
+zones              = [1, 2, 3]
+node_count         = "3"
+ssh_public_key     = "/home/groot/.ssh/id_rsa.pub"
