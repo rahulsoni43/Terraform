@@ -16,6 +16,8 @@
 
 # Dockerizing the application and pushing it to ACR private repository.
 
+  - First Version of Application
+
    ```
    FROM alpine:3.14
    COPY /bin/ /app
@@ -47,17 +49,28 @@
 # Azure Container Registry
 
    - Pushing both Docker image to private container repository Azure Container Registory in this case.
+   - Use below command to tag the docker image
+     
+     ``` 
+      docker tag <IMAGE TAG> enablon.azurecr.io/v1:v1
+      docker tag <IMAGE TAG> enablon.azurecr.io/v2:v2
+      az acr login enablon.azurecr.io
+      docker push enablon.azurecr.io/v1:v1
+      docker push enablon.azurecr.io/v2:v2
+     ```
    - ACR **`enablon.azurecr.io`**
 
 #  Deployment
 
    - Below is the deployment file that needs to be created with >1 replicas to serve traffic and applications availability
+   - Deployment is making use of the image that we build and push to the ACR in the previous steps.
    - Secoud resource is to expose the deployment as a service with type Load Balancer IP which gets the Public IP where the application will be accessible.
    - Once the service get the public ip try to access it over the **`http://<public_ip>:8080/success`** that will return as below
 
    ![v1](images/v1.PNG)
 
     ```
+
     apiVersion: apps/v1
     kind: Deployment
     metadata:
@@ -86,6 +99,7 @@
     ```
 
     ```
+
     apiVersion: v1
     kind: Service
     metadata:
@@ -104,6 +118,9 @@
     status:
       loadBalancer: {}
     ```
+
+     ![svc](images/svc.PNG)
+
 
    - Once the deployment of first version is done successfully use below command to release the new feature/version of the image.
 
