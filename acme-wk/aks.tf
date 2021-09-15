@@ -1,3 +1,18 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+    }
+  }
+    backend "azurerm" {
+        resource_group_name  = "enablon"
+        storage_account_name = "tfstateacme"
+        container_name       = "tfstate"
+        key                  = "terraform.tfstate"
+    }
+
+}
+
 provider "azurerm" {
   version = "=2.5"
   features {}
@@ -33,7 +48,22 @@ resource "azurerm_kubernetes_cluster" "aks-cluster" {
 
 resource "azurerm_container_registry" "aks-cnt" {
   name = "enablon"
+  admin_enabled = true
   resource_group_name = azurerm_resource_group.aks-grp.name
   location = azurerm_resource_group.aks-grp.location
   sku = "Standard"
+}
+
+resource "azurerm_storage_account" "storage" {
+  name                     = "tfstateacme"
+  resource_group_name      = azurerm_resource_group.aks-grp.name
+  location                 = azurerm_resource_group.aks-grp.location
+  account_tier             = "Standard"
+  account_replication_type = "GRS"
+}
+
+resource "azurerm_storage_container" "container" {
+  name                  = "tfstate"
+  storage_account_name  = azurerm_storage_account.storage.name
+  container_access_type = "private"
 }
