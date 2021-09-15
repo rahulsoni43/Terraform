@@ -120,6 +120,13 @@
 
      ![svc](images/svc.PNG)
 
+ ## Solution to Problem 1
+ 
+   - Verify if first version of application is running successfully by using **`http://<public_ip>:8080/success`** that will return as below
+
+     ![v1](images/v1.PNG)
+    
+ ## Solution to Problem 2
 
    - Once the deployment of first version is done successfully use below command to release the new feature/version of the image.
 
