@@ -36,5 +36,4 @@ resource "azurerm_container_registry" "aks-cnt" {
   resource_group_name = azurerm_resource_group.aks-grp.name
   location = azurerm_resource_group.aks-grp.location
   sku = "Standard"
-
 }
