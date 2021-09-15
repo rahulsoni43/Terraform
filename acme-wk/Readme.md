@@ -64,12 +64,8 @@
 
    - Below is the deployment file that needs to be created with >1 replicas to serve traffic and applications availability
    - Deployment is making use of the image that we build and push to the ACR in the previous steps.
-   - Secoud resource is to expose the deployment as a service with type Load Balancer IP which gets the Public IP where the application will be accessible.
-   - Once the service get the public ip try to access it over the **`http://<public_ip>:8080/success`** that will return as below
 
-   ![v1](images/v1.PNG)
-
-      ```
+    ```
        apiVersion: apps/v1
        kind: Deployment
        metadata:
@@ -94,9 +90,12 @@
                imagePullPolicy: Always
                name: v1
                resources: {}
-       status: {}     
-      ```
-  
+       status: {} 
+    ```
+    
+   - Secoud resource is to expose the deployment as a service with type Load Balancer IP which gets the Public IP where the application will be accessible.
+   - Once the service get the public ip try to access it over the **`http://<public_ip>:8080/success`** that will return as below
+
       ``` 
        apiVersion: v1
        kind: Service
