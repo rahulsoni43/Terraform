@@ -1,7 +1,7 @@
 # Versions
 
    ```
-    TF - 0.12.31
+    Terraform Version - 0.12.31
     AKS - 1.20.9
    ```
 
@@ -14,8 +14,9 @@
   - Storage Account - Blob Container
   - Create Deployment on Kubernetes to host various version of application
 
-# Dockerizing the application and pushing it to ACR private repository.
+# Dockerizing the application and pushing it to ACR repository.
 
+  - Make sure the application binary files are present in the same directory as that of Dockerfile
   - First Version of Application
 
    ```
@@ -49,7 +50,7 @@
 # Azure Container Registry
 
    - Pushing both Docker image to private container repository Azure Container Registory in this case.
-   - Use below command to tag the docker image
+   - Use below command to tag and push the docker image
      
      ``` 
       docker tag <IMAGE TAG> enablon.azurecr.io/v1:v1
@@ -58,7 +59,7 @@
       docker push enablon.azurecr.io/v1:v1
       docker push enablon.azurecr.io/v2:v2
      ```
-   - ACR **`enablon.azurecr.io`**
+   - ACR **`enablon.azurecr.io`** this is configured as anonymus pull, so you can directly pull from the repo and run the deployment.
 
 #  Deployment
 
@@ -93,8 +94,7 @@
        status: {} 
       ```
     
-   - Secoud resource is to expose the deployment as a service with type Load Balancer IP which gets the Public IP where the application will be accessible.
-   - Once the service get the public ip try to access it over the **`http://<public_ip>:8080/success`** that will return as below
+   - Second resource is to expose the deployment as a service with type Load Balancer IP which gets the External Public IP and the application will be accessible on this IP
 
       ``` 
        apiVersion: v1
@@ -116,6 +116,8 @@
          loadBalancer: {}
       ```
 
+   - Once the service get the public ip try to access it over the **`http://<public_ip>:8080/success`** that will return as below
+
      ![svc](images/svc.PNG)
 
 
@@ -128,6 +130,12 @@
    - Verify the deployment **`http://<public_ip>:8080/success`** that will return as below
 
      ![v2](images/v2.PNG)
+
+     OR
+
+     ```
+       for ((i=1;i<=100;i++)); do curl "http://20.81.72.239:8080/success"; sleep 2;done
+     ```
 
 
 # Storage Backend
